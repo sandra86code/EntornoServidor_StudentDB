@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Añadir estudiante</title>
+<link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css">
+<style>
+	form { text-align: center; margin: auto !important;}
+	input, select, h2 {margin: auto; }
+	h2   {text-align: center; margin-top: 2rem;}
+	.form-group {margin-top: 2rem;}
+	span {color: blue; }
+	.buttonlink { margin: auto; text-align: center;}
+</style>
+</head>
+<body>
+	<main>
+	<form class="form-horizontal" action="#" th:action="@{/addStudentSubmit}"
+		th:object="${student}" method="post">
+		<h1>Añadir estudiante</h1>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="name">Nombre: </label>  
+			  <div class="col-md-2">
+			  <input id="num1" th:field="*{name}" name="name" type="text" class="form-control input-sm" required>
+			    
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="surname">Apellido/s:
+				</label>
+				<div class="col-md-2">
+					<input id="num1" th:field="*{surname}" name="surname" type="text"
+						class="form-control input-sm" required>
+
+				</div>
+			</div>
+
+			<div class="form-group"
+				th:classapend="${#fields.hasErrors('age')} ? 'has-error'"> <!-- Muestra un formulario u otro en funcion de si saca error o no -->
+				<label class="col-md-4 control-label" for="edad">Edad:</label>
+				<div class="col-md-4">
+					<input id="edad" th:field="*{age}" name="edad" type="number"
+						class="form-control input-md" required>
+					<span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
+						class="help-block" id="id-error"></span>
+				</div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+				<div class="col-md-4">
+					<button id="singlebutton" name="singlebutton"
+						class="btn btn-primary">Añadir</button>
+				</div>
+			</div>
+		</form>
+		  <div class="col-md-4 buttonlink">
+		    <button name="singlebutton" class="btn btn-primary" onclick="window.location.href='listStudents';">Volver a la lista</button>
+		  </div>
+	</main>
+</body>
+</html>
